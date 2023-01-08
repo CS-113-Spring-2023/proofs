@@ -1,0 +1,61 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{graphicx}
+\title{Combinatorics Problems}
+\author{CS/MATH 113 team}
+
+\printanswers 
+\begin{document}
+
+\maketitle
+
+\begin{questions}
+    \question Prove that at a party where there are at least two people, there are two people who know the same number of other people there. Given that everyone atleast knows the host.
+    \begin{solution}
+        Let there be $n$ number of people at the party where $n \in \mathbb{N}$ and $n\geq2$ 
+        \\Now the maximum number of people a person can know is $n-1$
+        \\The minimum number of people someone can know is 1 (the host).
+        \\Now we have $n$ pigeons and $n-1$ holes, so with the pigeon hole principle atleast 1 hole will have more than 1 pigeon. 
+        \\So assigning number of people that know that amount of people from 1 to $n-1$, there would be atleast 1 number $k$ where 2 people are assigned.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+    \question How many 4-permutations of the positive integers not exceeding 100 contain exactly three consecutive integers $k$, $k + 1$, $k + 2$, in the correct order where these consecutive integers can be separated by other integers in the permutation? 
+    \\Some example of such 4 permuations would be $(1,2,5,3), (69,42,43,44), (50,51,52,54),$ etc.
+    \begin{solution}
+    As we have a 4-permutation for positive interger less than of equal to 100 where $k$, $k+1$, and $k+2$ occurs then $k\leq 98$
+    \\We need to choose 4 integers $k$, $k+1$, $k+2$, and $x$.
+    \\The number of ways we can choose $k$ is $^{98}C_1 = 98$.
+    \\Number of ways $x$ can be chosen from the remaining 97 intgers is $^{97}C_1 = 97$. 
+    \\The number of arrangements we can have where integers are in correct order are 4:
+    $$(k,k+1,k+2,x)$$
+    $$(k,k+1,x,k+2)$$
+    $$(k,x,k+1,k+2)$$
+    $$(x,k,k+1,k+2)$$
+    Number of ways 4 integers can be selected such that all 4 are in the correct order is $^{97}C_1 = 97$.
+    So in total we have $(98\times 97 \times 4) - 97 = 37927$
+    \begin{flushright}
+        $\square$
+    \end{flushright}
+    \end{solution}
+
+    \question Show that for any connected graph atleast 2 vertices have the same degree.
+    \begin{solution}
+        Let $G = (V,E)$ be a connected graph with $n$ vertices.
+        \\Then for every vertex $v \in V$, $1 \leq degree(v) \leq n-1$.
+        \\There are $n$ vertices and $n-1$ possible values for degree. 
+        \\With pigeonhole principle we know that atleast 2 vertices will have the same degree.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question 
+    
+\end{questions}
+
+\end{document}

@@ -1,0 +1,157 @@
+\documentclass{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphics}
+\usepackage{graphicx}
+\title{Graph theory Problems}
+\author{CS/MATH 113 team}
+
+\printanswers 
+\begin{document}
+
+\maketitle
+
+\begin{questions}
+    \question Let G be a Graph of Grith 4 in which every vertex has a degree k. 
+    prove that G will have atleast 2k vertices. 
+    \begin{solution}
+        Let $G$ be a k-regular Graph, s.t. $grith(G) = 4$ and degree of each vertex in G is $k$. 
+        \\Let $x$, $y$ be $2$ vertices in $G$ s.t. $x$ and $y$ are connected. 
+        \\As grith of $G$ is 4, the length of the smallest cycle in $G$ is 4.
+        \\Therefore $x$ and $y$ cannot have any common neighbors as that would create a cycle of 3. 
+        \\The neighborhood of $x$ and $y$ are disjoint sets of size $k$, $N(x) = N(y) = k$
+        \\Therefore there are atleaste $2k$ vertices in $G$
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Number of vertices of odd degree in a graph is always even.
+    \begin{solution}
+        Let $G = (V,E)$ be a graph
+        $$|E| = \frac{1}{2}\sum\limits_{v\in V} degree(v)$$
+        Then $\sum\limits_{v\in V} degree(v)$ must be even, so if an odd number of vertices have odd degree then $\sum\limits_{v\in V} degree(v)$ would be odd.
+        \\Therefore number of vertices of odd degree in a graph must be even.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+    
+    \question Prove that for any graph $G$ and $H$, $G \cong H$ iff $\overline{G} \cong \overline{H}$.
+    \begin{solution}
+        Let $G = (V(G), E(G))$ and $H = (V(H), E(H))$ be 2 graphs.
+        \\First we show that $G \cong H \implies \overline{G} \cong \overline{H}$
+        \\Let $f:V(G) \rightarrow V(H)$ be an isomorphism from $G$ to $H$.
+        \\As $f$ is an isomorphism $\forall u,v \in V(G)$, $uv\in E(G) \Leftrightarrow f(u)f(v)\in E(H)$.
+        \\So for $\overline{G}$ we know $\forall u,v \in V(G)$, $uv\in E(\overline{G}) \Leftrightarrow uv \not\in E(G)$ 
+        \\Then as for $uv\in E(G) \Leftrightarrow f(u)f(v)\in E(H)$, then under $f$, $uv\not\in E(G) \Leftrightarrow f(u)f(v)\not\in E(H)$
+        \\So we have that $uv\in E(\overline{G}) \Leftrightarrow f(u)f(v)\not\in E(\overline{H})$
+        \\So therefore $f$ is an isomorphism from $\overline{G}$ to $\overline{H}$.
+        \\The same argumentcan be used to show the converse.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question  Show that isomorphism of simple graphs is an equivalence relation.
+    \begin{solution}
+        We show that isomorphism is reflexive, symmetric and transitive.
+        \\\textbf{Reflexive:} Let $G = (V,E)$, then we have bijection $f:V \rightarrow V$, where $\forall v \in V, \; v = f(v)$.
+        \\Therefore $G \cong H$ 
+        \\\textbf{Symmetric:}  Let $G = (V(G), E(G))$ and $H = (V(H), E(H))$,
+        \\Let $f:V(G) \rightarrow V(H)$ be an isomorphism from $G$ to $H$, then inverse $f^{-1}:V(H) \rightarrow V(G)$ is an isomorphism from $H$ to $G$
+        \\Therefore if $G \cong H$ then $H \cong G$
+        \\\textbf{Transitive:} Let $G = (V(G), E(G))$, $H = (V(H), E(H))$ and $K = (V(K), E(K))$,
+        \\Let $f:V(G) \rightarrow V(H)$ be an isomorphism from $G$ to $H$, and $g:V(H) \rightarrow V(K)$ be an isomorphism from $H$ to $K$, then $f \circ g$ is an isomorphism from $G$ to $K$
+        \\Therefore if $G \cong H$ and $H \cong K$ then $G \cong K$
+        \\\\So isomorphism is an equivalence relation.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question A graph with maximum degree at most $k$ is $(k+1)$-colorable
+    \begin{solution}
+        Proof. We use induction on the number of vertices in the graph, which we denote by $n$. 
+        \\\textbf{Base case:} A 1-vertex graph has maximum degree 0 and is 1-colorable, so $P(1)$ is true. 
+        \\\textbf{Inductive Hypothesis:} Assume that a $n$-vertex graph with maximum degree at most $k$ is $(k+1)$-colorable.
+        \\\textbf{Induction Step:} Let $G$ be an $(n+1)$-vertex graph with maximum degree at most $k$. 
+        \\Remove a vertex $v$, leaving an $n$-vertex graph $G^{\prime}$. 
+        \\The maximum degree of $G^{\prime}$ is at most $k$, and so $G^{\prime}$ is $(k+1)$-colorable by our Inductive Hypothesis. 
+        \\Now add back vertex $v$. We can assign $v$ a color different from all adjacent vertices, since $v$ has degree at most $k$ neighbors and $k+1$ colors are available. 
+        \\Therefore, $G$ is $(k+1)$-colorable. 
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Show that $K_n$ has a Hamiltonian circuit whenever $n\geq 3$
+    \begin{solution}
+        We can form a Hamilton circuit in $K_n$ beginning at any vertex. Such a circuit can be
+        built by visiting vertices in any order we choose, as long as the path begins and ends at the same
+        vertex and visits each other vertex exactly once. This is possible because there are edges in $K_n$
+        between any two vertices.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Prove that in every set of 6 people there is a set if atleast 3 mutual aquantainces or 3 mutual strangers.
+    \begin{solution}
+        For any graph of 6 vertices if the size of independent set is less than 3 than then atleast 3 vertices in the connected set and vise versa.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question What are the number of edges in $k_n$.
+    \begin{solution}
+        As every vertex in $k_n$ has a degree $n-1$ then so the number of edges in $k_n$ are:
+        $$\frac{n(n-1)}{2}$$
+
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Show that every tree $T$ as $\Delta(T)-1$ leaves, where $\Delta(T)$ represented the maximum degree of a vertex in $T$.
+    \begin{solution}
+        %TODO: add solution
+
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Prove or disprove that if every vertex of a graph $G$ has a degree 2 then $G$ is a cycle.
+    \begin{solution}
+        $G$ can be 2 disconnected cycles, hence not true.
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Prove that every n-vertex graph with atleast n edges contains a cycle.
+    \begin{solution}
+        %TODO: add solution
+
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    \question Prove that every graph $G$ contains a path of length $\delta(G)$ and a cycle of length atleast $\delta(G)+1$, where $\delta(G)$ represented the smallest degree of a vertex in $G$.
+
+    \begin{solution}
+        %TODO: add solution
+
+        \begin{flushright}
+            $\square$
+        \end{flushright}
+    \end{solution}
+
+    
+\end{questions}
+
+\end{document}
