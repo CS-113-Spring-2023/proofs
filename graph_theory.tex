@@ -115,10 +115,11 @@
         \end{flushright}
     \end{solution}
 
-    \question Show that every tree $T$ as $\Delta(T)-1$ leaves, where $\Delta(T)$ represented the maximum degree of a vertex in $T$.
+    \question Show that every tree $T$ has atleast $\Delta(T)-1$ leaves, where $\Delta(T)$ represented the maximum degree of a vertex in $T$.
     \begin{solution}
-        %TODO: add solution
-
+        Let $T = (V,E)$ be a tree. Let $v \in V$, s.t. $d(v) = \Delta(T)$. As $T$ is a tree we know that $T$ has $\Delta(T)-1$ children.
+        Then fron $v$ there are $\Delta(T)-1$ subtrees where $v$ is the root of those subtrees. Those subtrees would have atleast 1 leaf each. 
+        As leaves of subtree are also leaves of $T$, therefore $T$ has atleast $\Delta(T)-1$ leaves.
         \begin{flushright}
             $\square$
         \end{flushright}
@@ -132,26 +133,76 @@
         \end{flushright}
     \end{solution}
 
-    \question Prove that every n-vertex graph with atleast n edges contains a cycle.
-    \begin{solution}
-        %TODO: add solution
+    % \question Prove that every n-vertex graph with atleast n edges contains a cycle.
+    % \begin{solution}
+    %     % TODO
+    %     \begin{flushright}
+    %         $\square$
+    %     \end{flushright}
+    % \end{solution}
 
+    \question Prove that every graph $G$ contains a path of length atleast $\delta(G)$ where $\delta(G)$ represented the smallest degree of a vertex in $G$.
+    \begin{solution}
+        Let $G = (V,E)$ be a graph. Let $P$ be the maximal path of $G$. Let $v$ be an endpoint of $G$. Then all neighbors of $v$ must be in $P$.
+        Therefore $length(P)\geq d(v)$. As $d(v) \geq \delta(G)$, therefore $length(P)\geq \delta(G)$.
         \begin{flushright}
             $\square$
         \end{flushright}
     \end{solution}
 
-    \question Prove that every graph $G$ contains a path of length $\delta(G)$ and a cycle of length atleast $\delta(G)+1$, where $\delta(G)$ represented the smallest degree of a vertex in $G$.
-
+    \question Prove that every graph $G$ contains a cycle of length atleast $\delta(G)+1$, where $\delta(G)$ represented the smallest degree of a vertex in $G$.
     \begin{solution}
-        %TODO: add solution
-
+        Let $G = (V,E)$ be a graph. Let $P$ be the maximal path of $G$. Let $v$ be an endpoint of $G$. Then all neighbors of $v$ must be in $P$.
+        Therefore $length(P)\geq d(v)$. As $d(v) \geq \delta(G)$, therefore $length(P)\geq \delta(G)$. Let $u$ be the vertex in $P$ with maximum distance from $v$.
+        Let $^uP_v$ be a $u$ to $v$ path in $P$. As all other neighbors of $v$ have smaller distance from $v$ than $u$, $length(^uP_v) \geq d(v) \geq \delta(G)$.
+        Let $e = (u,v)$, then $^uP_v$ along with $e$ make a cyncle of length atleast $\delta(G)+1$.
         \begin{flushright}
             $\square$
         \end{flushright}
     \end{solution}
 
-    
+    \question \begin{parts}
+        \part Show that if $G$ is a finite graph such that every vertex of $G$ has a degree of 2 then $G$ contains a cycle.
+        \begin{solution}
+            Let $G = (V,E)$ be a graph. Let $P$ be a maximal path of $G$. Let $u$ be an endpoint of $P$.
+            As $d(u) = 2$ and $P$ cannoted be extended further, it must have a neighbor $v$ in $P$ with an edge $e$ not in $P$.
+            Let $^uP_v$ be a $u$ to $v$ path in $P$. $^uP_v$ along with $e$ makes a cycle in $G$.
+            \begin{flushright}
+                $\square$
+            \end{flushright}
+        \end{solution}
+        \part Show that this isn't nessesarily true if $G$ is an infinite graph.
+        \begin{solution}
+            Let $G=(V,E)$, where $V = \mathbb{Z}$, and $E = \{(i,j)|i,j \in \mathbb{Z}\;s.t.\;\; |i-j|=1\}$.
+            $G$ every vertex of $G$ has a degree of 2 but $G$ doesn't contain a cycle.
+            \begin{flushright}
+                $\square$
+            \end{flushright}
+        \end{solution}
+        \part Construct an infinite graph $G$ such that every vertex of $G$ has a degree of 2 and $G$ contains a cycle.
+        \begin{solution}
+            Let $G=(V,E)$, where $V = \mathbb{Z}^+$, and 
+            $$E = \bigcup_{k\in \mathbb{Z}^+} = \{(3k,3k-1),(3k-1,3k-2),(3k-2,3k)\}$$
+            $G$ every vertex of $G$ has a degree of 2 and $G$ contains cycles.
+            \begin{flushright}
+                $\square$
+            \end{flushright}
+        \end{solution}
+    \end{parts}
+
+    \question Prove that a graph is bipartite if and only if its 2 colorable.
+    \begin{solution}
+        First we show that if a graph $G$ is bipartite then $G$ is 2 colorable.
+        \\Let $G = (V,E)$ be a bipartite graph, with bipartite sets $X$ and $Y$, assign all elements of $X$ some color $R$ and all elements of $Y$ some color $B$.
+        As elements of $X$ has no neighbor in $X$ and elements of $Y$ has no neighbor in $Y$, then this is a valid coloring therefore $G$ is 2 colorable.
+        \\Now we show that if $G$ is 2 colorable then $G$ is bipartite.
+        \\Let $G = (V,E)$ be a 2 colorable graph (with 2 colors $R$ and $B$). Let $X$ be a set of all vertices of color $R$ and $Y$ be a set of all vertices of color $B$.
+        \\As $R$ and $B$ color the graph no vertex in $X$ has a neighbor in $X$ and no vertex in $Y$ has a neighbor in $Y$, and $X \cup Y = V$. Therefore $G$ is bipartite.
+        \begin{flushright}
+            $\square$
+        \end{flushright} 
+    \end{solution}
+
 \end{questions}
 
 \end{document}
